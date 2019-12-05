@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ candidat.Nom }} {{candidat.Prenom }}{% endblock %}
+
+{% block body %}
+<div class="margin-lr-1">
+    <div class="justify-around row margin-t-1">
+      <div class="large-4">
+        <p class="titre-cat">Informations Personnelles</p>
+        <div>
+          <p class="font-1"><span class="bold">Nom :</span> {{candidat.Nom}}</p>
+          <p class="font-1"><span class="bold">Prénom : </span>{{candidat.Prenom}}</p>
+        </div>
+        <div>
+            <p class="font-1"><span class="bold">Email : </span>{{candidat.Email}}</p>
+            <p class="font-1"><span class="bold">N° de téléphone : </span>{{candidat.NumTel}}</p>
+        </div>
+        <div>
+            <p class="font-1"><span class="bold">Date de naissance: </span>{{candidat.BirthDate | date('d/m/Y')}}</p>
+            <p class="font-1"><span class="bold">Niveau d'étude : </span>{{candidat.Etude}}</p>
+            <p class="font-1"><span class="bold">Situation Professionnel : </span>{{candidat.StatutPro}}</p>
+        </div>
+      </div>
+      <div class="large-3">
+        <p class="titre-cat">Informations Inscriptions</p>
+        <div>
+          <p class="font-1"><span class="bold">Date d'inscription : </span>{{candidat.Inscription | date('d/m/Y')}}</p>
+          <p class="font-1"><span class="bold">Type de financement :</span> {{candidat.TypeFinancement}}</p>
+        </div>
+        <div>
+            <p class="font-1"><span class="bold">Frais de dossier : </span>{{candidat.FraisDossier}}</p>
+            <p class="font-1"><span class="bold">Résultat des tests d'aptitudes : </span>{{candidat.StatutTestApt}}</p>
+        </div>
+      </div>
+      <div class="large-4">
+        <p class="titre-cat">Informations Stage</p>
+        <div>
+          <p class="font-1"><span class="bold">Nom de l'entreprise du stage : </span>{{candidat.NomStage}}</p>
+          <p class="font-1"><span class="bold">N° de téléphone de l'entreprise : </span>{{candidat.NumTelStage}}</p>
+        </div>
+        <div>
+            <p class="font-1"><span class="bold">N° de CIRET de l'entreprise : </span>{{candidat.CIRETStage}}</p>
+            <p class="font-1"><span class="bold">Adresse de l'entreprise : </span>{{candidat.AdresseStage}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="justify-around row margin-t-1">
+      <div class="large-4">
+        <p class="titre-cat">Informations Pôle Emploi / Mission Local</p>
+        <div>
+          <p class="font-1"><span class="bold">Identifiant : </span>{{candidat.IdentifiantPO}}</p>
+          <p class="font-1"><span class="bold">Mot de passe : </span>{{candidat.MdpPO}}</p>
+        </div>
+        <div>
+            <p class="font-1"><span class="bold">Email Conseiller : </span>{{candidat.EmailConseillePO}}</p>
+        </div>
+      </div>
+      <div class="large-3">
+        <p class="titre-cat">Documents liés au candidat :</p>
+        <ul>
+          {% for document in documents %}
+            <li class="list-doc-candidat"><a href="{{ asset('documents/' ~ document.fichier) }}" class="font-1 bold">{{document.name}}</a> <a href="{{ path('document_delete', {'id':document.id}) }}" class="cross" onclick="return confirm('Supprimer ce document ?')">X</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="large-4">
+        <p class="titre-cat">Note Complémentaire :</p>
+        <p class="font-1">{{candidat.Note}}</p>
+      </div>
+    </div>
+    <div class="margin-t-1">
+      <button class="large-2"><a href="{{ path('session_show',{'id':candidat.SessionFait.id}) }}" class="contact100-form-btn-2 btn-a">Retour</a></button>
+      <button class="large-2">
+        <a href="{{ path('candidat_edit', {'id':candidat.id}) }}" class="contact100-form-btn-2 btn-a">Modifier</a>
+      </button>
+      <button class="large-2">
+        <a href="{{ path('document_upload', {'id':candidat.id}) }}" class="contact100-form-btn-2 btn-a">Upload Pdf</a>
+      </button>
+        <button class="large-2"><a href="{{ path('candidat_delete', {'id':candidat.id}) }}" class="contact100-form-btn-2 btn-a" onclick="return confirm('Supprimer ce Candidat ?')">Supprimer</a></button>
+    </div>
+</div>
+{% endblock %}

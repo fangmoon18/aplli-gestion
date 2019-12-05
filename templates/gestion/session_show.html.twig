@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ session.titre }}{% endblock %}
+
+{% block body %}
+    <div class="margin-b-1 bg-color-session">
+      <h1 class="text-center titre-session contact100-form-title">{{ session.Titre }}</h1>
+      <div class="row justify-around">
+        <p class="date-session">Session de formation du {{session.DebutFormation | date('d/m/Y') }} au {{session.FinFormation | date('d/m/Y')}}</p>
+        <p class="date-session">Date de L'examen : {{session.DebutExam | date('d/m/Y')}} au {{session.FinExam | date('d/m/Y')}}</p>
+        <p class="date-session">Date du stage : {{session.DebutStage | date('d/m/Y')}} au {{session.FinStage | date('d/m/Y')}}</p>
+    </div>
+    </div>
+    <div class="margin-lr-1">
+      <div class="table">
+        <div class="row header text-center align-center">
+          <p class="cell color-grey">Nom</p>
+          <p class="cell color-grey">Prénom</p>
+          <p class="cell text-center color-grey">N° de Téléphone</p>
+          <p class="cell color-grey">Email</p>
+          <p class="cell color-grey">Type de Financement</p>
+          <p class="cell color-grey">Statut Financement</p>
+          <p class="cell color-grey">Statut Tests</p>
+          <p class="cell color-grey">Date d'inscription</p>
+          <p class="cell color-grey">Entreprise du stage</p>
+          <p class="cell color-grey">Upload Doc</p>
+          <p class="cell color-grey">Suppression</p>
+        </div>
+        {% for candidat in session.candidats %}
+          <div class="row border-lr-session text-center">
+            <a href="{{ path('candidat_show', {'id':candidat.id}) }}" class="cell color-grey">{{candidat.Nom}}</a>
+            <a href="{{ path('candidat_show', {'id':candidat.id}) }}" class="cell color-grey">{{candidat.Prenom}}</a>
+            <p class="cell color-grey">{{candidat.NumTel}}</p>
+            <a href="{{ path('send_mail_one', {'id':candidat.id})}}" class="cell link-f no-deco">{{candidat.Email}}</a>
+            <p class="cell color-grey">{{candidat.TypeFinancement}}</p>
+            <p class="cell color-grey">{{candidat.StatutFinancement}}</p>
+            <p class="cell color-grey">{{candidat.StatutTestApt}}</p>
+            <p class="cell color-grey">{{candidat.Inscription | date('d/m/Y') }}</p>
+            <p class="cell text-center color-grey">{{candidat.NomStage}}</p>
+            <a href="{{ path('document_upload', {'id':candidat.id}) }}" class="cell color-grey">Upload</a>
+            <a href="{{ path('candidat_delete', {'id':candidat.id}) }}" class="cell color-grey" onclick="return confirm('Supprimer ce Candidat ?')">Supprimer</a>
+          </div>
+          {%endfor%}
+        </div>
+    </div>
+{% endblock %}

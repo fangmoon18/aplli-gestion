@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+
+{% if error %}
+    <div class="message-info text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+<div class="large-5 text-center justify-center">
+    <form method="post">
+
+        <div class="wrap-input100 rs1-wrap-input100 margin-t-3">
+            <label>Pseudo : </label>
+            <input type="text" name="username" class='input100'/>
+        </div>
+        <div class="wrap-input100 rs1-wrap-input100">
+            <label>Mot de passe : </label>
+            <input type="password" name="password" class='input100'/>
+        </div>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+
+        <input type="hidden" name="_target_path" value="home"/>
+        <button type="submit" class="contact100-form-btn form-center margin-t-1">Connexion</button>
+
+    </form>
+</div>
+{% endblock %}

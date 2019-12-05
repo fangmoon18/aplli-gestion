@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil Appli{% endblock %}
+
+{% block body %}
+<div class="bg-color-session margin-b-1 ">
+  <h1 class="text-center titre-session contact100-form-title">{{ title }}</h1>
+</div>
+  <div class="margin-lr-1 margin-t-1">
+    <div class="table">
+      <div class="row header text-center align-center">
+        <p class="cell1 width-20 color-grey">Nom de la Session</p>
+        <p class="cell1 large-1 color-grey">Début Formation</p>
+        <p class="cell1 large-1 color-grey">Fin Formation</p>
+        <p class="cell1 large-1 color-grey">Début Examen</p>
+        <p class="cell1 large-1 color-grey">Fin Examen</p>
+        <p class="cell1 large-1 color-grey">Début Stage</p>
+        <p class="cell1 large-1 color-grey">Fin Stage</p>
+        <p class="cell1 large-1 color-grey">Modifier</p>
+        <p class="cell1 large-1 color-grey">Suppression</p>
+      </div>
+      {% for session in sessions %}
+        <div class="row border-lr-session text-center">
+          <a href="{{ path('session_show', {'id':session.id}) }}" class="cell1 width-20 bold color-grey">{{ session.Titre }}</a>
+          <p class="cell1 large-1 color-grey">{{ session.DebutFormation | date('d/m/Y') }}</p>
+          <p class="cell1 large-1 color-grey">{{ session.FinFormation | date('d/m/Y') }}</p>
+          <p class="cell1 large-1 color-grey">{{ session.DebutExam| date('d/m/Y') }}</p>
+          <p class="cell1 large-1 color-grey">{{ session.FinExam | date('d/m/Y') }}</p>
+          <p class="cell1 large-1 color-grey">{{ session.DebutStage| date('d/m/Y') }}</p>
+          <p class="cell1 large-1 color-grey">{{ session.FinStage | date('d/m/Y') }}</p>
+          <p class="cell1 large-1 color-grey"><a href="{{ path('session_edit', {'id':session.id}) }}">Modifier</a></p>
+          <p class="cell1 large-1 color-grey"><a href="{{ path('session_delete', {'id':session.id}) }}" onclick="return confirm('Supprimer cette Session ?')">Supprimer</a></p>
+        </div>
+      {% endfor %}
+    </div>
+{% endblock %}

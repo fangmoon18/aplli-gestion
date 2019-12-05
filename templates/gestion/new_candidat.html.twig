@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ title }}{% endblock %}
+{% block body %}
+<div class="margin-b-1 bg-color-session">
+  <h1 class="text-center titre-session contact100-form-title">{%if editMode%} Modifier Candidat{%else%} Nouveau Candidat{%endif%}</h1>
+</div>
+<div class="wrap-contact100">
+  {{ form_start(formCandidat)}}
+  <div class="justify-center row ">
+    <button class="large-2">
+      <a href="{%if editMode%}
+      {{ path('candidat_show',{'id':candidat.id}) }}
+      {%else%}{{path('home')}}{%endif%}" class="contact100-form-btn-2 btn-a">Retour</a>
+    </button>
+    <button type="submit" class="contact100-form-btn-2 large-2">Enregistrer</button>
+  </div>
+  <div class="justify-around row">
+    <div class="large-5">
+      <p class="titre-cat">Informations personnelles</p>
+      <div class="row">
+        <div class="large-5 wrap-input100 rs1-wrap-input100">
+          {{form_widget(formCandidat.Nom)}}
+        </div>
+        <div class="large-5 wrap-input100 rs1-wrap-input100">
+          {{form_widget(formCandidat.Prenom)}}
+        </div>
+      </div>
+      <div class="row">
+          <div class="large-5 wrap-input100 rs1-wrap-input100">
+            {{form_widget(formCandidat.Email)}}
+          </div>
+          <div class="large-5 wrap-input100 rs1-wrap-input100">
+            {{form_widget(formCandidat.NumTel)}}
+          </div>
+      </div>
+      <div class="row">
+          <div class="large-5 wrap-input100 rs1-wrap-input100">
+            {{form_widget(formCandidat.Etude)}}
+          </div>
+          <div class="large-5 wrap-input100 rs1-wrap-input100">
+            {{form_widget(formCandidat.StatutPro)}}
+          </div>
+      </div>
+      <div class="wrap-input100 rs1-wrap-input100 large-5">
+        <label class="label-input100">Date de naissance : </label>
+        {{form_widget(formCandidat.BirthDate)}}
+      </div>
+    </div>
+
+    <div class="large-5">
+      <p class="titre-cat">Informations inscriptions</p>
+      <div class="row">
+        <div class="large-5 wrap-input100 rs1-wrap-input100">
+            <label class="label-input100">Date d'inscription : </label>
+            {{form_widget(formCandidat.Inscription)}}
+          </div>
+          <div class="large-5 wrap-input100 rs1-wrap-input100">
+            <label class="label-input100">Frais de dossier : </label>
+            {{form_widget(formCandidat.FraisDossier)}}
+          </div>
+      </div>
+      <div class="row">
+        <div class="large-5 wrap-input100 rs1-wrap-input100">
+          <label class="label-input100">Résultat des tests :</label>
+          {{form_widget(formCandidat.StatutTestApt)}}
+        </div>
+        <div class="large-5 wrap-input100 rs1-wrap-input100">
+          <label class="label-input100">Statut du Financement : </label>
+          {{form_widget(formCandidat.StatutFinancement)}}
+        </div>
+      </div>
+      <div class="row">
+          <div class="large-5 wrap-input100 rs1-wrap-input100">
+            {{form_widget(formCandidat.TypeFinancement)}}
+          </div>
+          <div class="large-5 wrap-input100 rs1-wrap-input100">
+            {{form_widget(formCandidat.SessionFait)}}
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="justify-around row margin-t-1">
+    <div class="large-5">
+      <p class="titre-cat">Informations Pôle Emploi / Mission Local</p>
+        <div class="row ">
+          <div class="large-5 wrap-input100 rs1-wrap-input100 ">
+              {{form_widget(formCandidat.IdentifiantPO)}}
+            </div>
+            <div class="large-5 wrap-input100 rs1-wrap-input100 ">
+              {{form_widget(formCandidat.MdpPO)}}
+            </div>
+        </div>
+        <div class="wrap-input100 rs1-wrap-input100 large-5">
+          {{form_widget(formCandidat.EmailConseillePO)}}
+        </div>
+    </div>
+    <div class="large-5">
+      <p class="titre-cat">Informations pour le Stage</p>
+        <div class="row">
+            <div class="large-5 wrap-input100 rs1-wrap-input100">
+              {{form_widget(formCandidat.NomStage)}}
+            </div>
+            <div class="large-5 wrap-input100 rs1-wrap-input100">
+              {{form_widget(formCandidat.NumTelStage)}}
+            </div>
+        </div>
+        <div class="wrap-input100 rs1-wrap-input100 large-5">
+          {{form_widget(formCandidat.CIRETStage)}}
+        </div>
+        <div class="wrap-input100 rs1-wrap-input100 large-5">
+          {{form_widget(formCandidat.AdresseStage)}}
+        </div>
+    </div>
+  </div>
+  <div class="wrap-input100 rs1-wrap-input100 margin-l-3 large-5">
+      <p class="titre-cat">Informations complémentaires </p>
+      {{form_widget(formCandidat.Note)}}
+  </div>
+  {{ form_end(formCandidat) }}
+</div>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{%block title %}Inscription {% endblock %}
+{% block body %}
+
+    <div class="row large-5 text-center justify-center margin-t-1">
+        <p>Inscription</p>
+        {{form_start(formUser)}}
+        <div class="wrap-input100 rs1-wrap-input100">
+            <label>Pseudo : </label>
+            {{form_widget(formUser.username)}}
+        </div>
+        <div class="wrap-input100 rs1-wrap-input100">
+            <label>Mot de passe : </label>
+            {{form_widget(formUser.password)}}
+        </div>
+        <button type="submit" class="contact100-form-btn form-center margin-t-1">Inscription</button>
+
+        {{form_end(formUser)}}
+    </div>
+{% endblock %}

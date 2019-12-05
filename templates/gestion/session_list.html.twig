@@ -1,0 +1,9 @@
+<ul class="text-center" id="menu-deroulant">
+  <li><p class="titre-list">Liste Sessions</p>
+    <ul class="bg-color-green align-center">
+      {% for session in sessions %}
+        <li><a href="{{ path('session_show', {'id':session.id}) }}" class="session-list">{{ session.Titre }}</a></li>
+      {% endfor %}
+    </ul>
+  </li>
+</ul>

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}{% endblock %}
+{% block body %}
+<div class="margin-b-1 bg-color-session">
+  <h1 class="text-center titre-session contact100-form-title">Upload un Fichier</h1>
+</div>
+<p class="titre-cat text-center">Ce document sera lié au candidat {{candidat.Nom}} {{candidat.Prenom}}</p>
+  {{ form_start(formDocument)}}
+    <div class="">
+      <div class='large-5 wrap-input100 rs1-wrap-input100 form-center' >
+        {{form_widget(formDocument.Name)}}
+      </div>
+      <div class='large-5 wrap-input100 rs1-wrap-input100 form-center margin-t-1' >
+        <label class="label-input100">Télécharger un Fichier : </label>
+        {{form_row(formDocument.Fichier)}}
+      </div>
+      <div class="row justify-center margin-t-1 nomargin-b">
+        <button type="submit" class="contact100-form-btn-2 btn-a">Enregistrer</button>
+        <button class="large-2 "><a href="{{ path('session_show',{'id':candidat.SessionFait.id}) }}" class="contact100-form-btn-2 btn-a">Retour</a></button>
+      </div>
+    </div>
+  {{ form_end(formDocument) }}
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href=" {{ asset('css/app.css') }} ">
+        <title>{% block title %}Appli-Gestion{% endblock %}</title>
+        {% block stylesheets %}
+        {% endblock %}
+    </head>
+    <body>
+    {% if app.user %}
+      <header>
+        <nav class="row justify-around">
+          <a class="" href="{{ path('home') }}">Gestion Sessions</a>
+          <div class="large-2">
+            {{ render(controller(
+                'App\\Controller\\GestionController::sessionList')) }}
+          </div>
+          <div class="">
+            <a class="padding-r-3" href="{{ path('session_create') }}">Créer une Session</a>
+            <a class="" href="{{ path('candidat_create') }}">Ajouter Candidat</a>
+          </div>
+            <a href="{{ path('logout') }}">Déconnexion</a>
+
+        </nav>
+      </header>
+    {% endif %}
+      <!--Affichage du message flash d'information-->
+      {% for message in app.flashes('success') %}
+          <div class="message-info text-center" id="info">{{message}}</div>
+      {% endfor %}
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+                integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+                crossorigin="anonymous"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+    {% endblock %}
+    </body>
+</html>
